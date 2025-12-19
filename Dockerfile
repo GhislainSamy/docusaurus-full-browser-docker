@@ -1,11 +1,17 @@
-# Dockerfile - Docusaurus DEV (npm only, non-root)
+# Dockerfile dev léger pour Docusaurus
 FROM node:20-alpine
 
-RUN addgroup -g 1000 docusaurus  && adduser -D -u 1000 -G docusaurus docusaurus
-
+# Dossier de travail
 WORKDIR /app
-USER docusaurus
 
+# Installer create-docusaurus globalement
+RUN npm install -g create-docusaurus@latest
+
+# Exposer les ports dev
 EXPOSE 3000 35729
 
-CMD ["npm", "start", "--", "--host", "0.0.0.0", "--poll", "1000"]
+# Dossier de travail final pour le site
+WORKDIR /app/website
+
+# Commande par défaut : npm install si nécessaire et start dev
+CMD ["sh", "-c", "if [ ! -d node_modules ]; then npm install; fi && npm run start -- --host 0.0.0.0 --poll 1000"]
