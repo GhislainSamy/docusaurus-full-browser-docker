@@ -5,7 +5,7 @@ services:
     image: docusaurus-dev:latest
     container_name: docusaurus-dev
     user: "1000:1000"
-    working_dir: /app/gigi-private-wiki
+    working_dir: /app/your-wiki
     ports:
       - "3000:3000"
       - "35729:35729"
