@@ -1,14 +1,35 @@
-version: "3.8"
+version: '3'
 
 services:
   docusaurus:
     image: docusaurus-dev:latest
     container_name: docusaurus-dev
-    user: "1000:1000"
-    working_dir: /app/your-wiki
     ports:
       - "3000:3000"
       - "35729:35729"
     volumes:
-      - ./docusaurus:/app
+      - /docker/your-wiki/docusaurus/your-wiki:/app
+    working_dir: /app
+    user: "1000:1000"
+    command: npm run start -- --host 0.0.0.0 --poll 1000
+
+  code-server:
+    image: lscr.io/linuxserver/code-server:latest
+    container_name: code-server
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Paris
+#      - PASSWORD=password #optional
+#      - HASHED_PASSWORD= #optional
+#      - SUDO_PASSWORD=password #optional
+#      - SUDO_PASSWORD_HASH= #optional
+#      - PROXY_DOMAIN=code-server.my.domain #optional
+#      - DEFAULT_WORKSPACE=/config/workspace #optional
+#      - PWA_APPNAME=code-server #optional
+    volumes:
+      - /docker/docker/your-wiki/ms-code/config:/config
+      - /docker/your-wiki/docusaurus/your-wiki:/your-wiki
+    ports:
+      - 3001:8443
     restart: unless-stopped
