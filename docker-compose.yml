@@ -28,7 +28,7 @@ services:
 #      - DEFAULT_WORKSPACE=/config/workspace #optional
 #      - PWA_APPNAME=code-server #optional
     volumes:
-      - /docker/docker/your-wiki/ms-code/config:/config
+      - /docker/your-wiki/vs-code/config:/config
       - /docker/your-wiki/docusaurus/your-wiki:/your-wiki
     ports:
       - 3001:8443
