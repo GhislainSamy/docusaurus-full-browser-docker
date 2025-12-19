@@ -39,7 +39,7 @@ docker run --rm -it -u 1000:1000 \
 ## Lancer
 
 ```bash
-curl -o Dockerfile https://raw.github.com/GhislainSamy/docusaurus-full-browser-docker/main/docker-compose.yml
+curl -o docker-compose.yml https://raw.github.com/GhislainSamy/docusaurus-full-browser-docker/main/docker-compose.yml
 # Depuis le répertoire contenant docker-compose.yml
 docker-compose up -d
 ```
