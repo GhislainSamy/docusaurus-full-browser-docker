@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  docusaurus:
+    image: docusaurus-dev:latest
+    container_name: docusaurus-dev
+    user: "1000:1000"
+    working_dir: /app/gigi-private-wiki
+    ports:
+      - "3000:3000"
+      - "35729:35729"
+    volumes:
+      - ./docusaurus:/app
+    restart: unless-stopped
